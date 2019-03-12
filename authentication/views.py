@@ -20,3 +20,8 @@ def login_user(request):
             return redirect('login')
     else:
         return render(request, 'authentication/login.html', {})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ('Cerraste tu sesión, ¡hasta pronto!'))
+    return redirect('home')

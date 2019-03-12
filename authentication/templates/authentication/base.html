@@ -22,9 +22,15 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="btn btn-dark" href="{% url 'login' %}" style="background-color: #1c1c1c; border-color: #1c1c1c;">Iniciar sesión</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="btn btn-dark" href="{% url 'logout' %}" style="background-color: #1c1c1c; border-color: #1c1c1c;">Cerrar sesión</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-dark" href="{% url 'login' %}" style="background-color: #1c1c1c; border-color: #1c1c1c;">Iniciar sesión</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -33,9 +39,9 @@
     <div class="container">
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-success alert-dismissable" role="alert">
+                <div class="col-md-6 offset-md-3 alert alert-success alert-dismissable" role="alert" style="background-color: #75b8c8; color: #fbfbfb">
                     <button class="close" data-dismiss="alert">
-                        <small><sup>x</sup></small>
+                        <small style="color: #fbfbfb"><sup>x</sup></small>
                     </button>
                     {{ message }}
                 </div>
