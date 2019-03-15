@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, EditUserForm
 
 # Create your views here.
 def home(request):
@@ -47,13 +47,13 @@ def register_user(request):
 
 def edit_profile(request):
     if request.method == "POST":
-        form = UserChangeForm(request.POST, instance=request.user)
+        form = EditUserForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, ('Cambios guardados'))
             return redirect('home')
     else:
-        form = UserChangeForm(instance=request.user)
+        form = EditUserForm(instance=request.user)
 
     context = {'form': form}
     return render(request, 'authentication/edit_profile.html', context)
