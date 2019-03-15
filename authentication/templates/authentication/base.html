@@ -24,6 +24,7 @@
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="btn btn-link" href="{% url 'edit_profile' %}" style="color: #1c1c1c;">{{user.first_name}} {{user.last_name}}</a>
                         <a class="btn btn-dark" href="{% url 'logout' %}" style="background-color: #1c1c1c; border-color: #1c1c1c;">Cerrar sesión</a>
                     </li>
                 {% else %}
