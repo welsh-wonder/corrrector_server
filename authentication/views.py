@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib import messages
-from .forms import SignUpForm, EditUserForm
+from .forms import SignUpForm, EditUserForm, ChangePasswordForm
 
 # Create your views here.
 def home(request):
@@ -57,3 +57,17 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'authentication/edit_profile.html', context)
+
+def change_password(request):
+    if request.method == "POST":
+        form = ChangePasswordForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, ('Cambios guardados'))
+            return redirect('home')
+    else:
+        form = ChangePasswordForm(user=request.user)
+
+    context = {'form': form}
+    return render(request, 'authentication/change_password.html', context)
