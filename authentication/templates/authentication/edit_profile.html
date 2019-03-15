@@ -1,0 +1,35 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <form method="POST" action="{% url 'edit_profile' %}">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="alert alert-danger alert-dismissable" role="alert" style="background-color: #ed6a5a; color: #fbfbfb">
+                <button class="close" data-dismiss="alert">
+                    <small style="color: #fbfbfb"><sup>x</sup></small>
+                </button>
+                <p>Resuelve estos errores e intenta de nuevo:</p>
+                {% for field in form %}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {{form.as_p}}
+
+        <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Guardar</button>
+    </form>
+        
+    <br/>
+    <div class="form-group">
+        <a href="{% url 'change_password' %}" class="btn btn-danger" style="background-color: #ed6a5a; border-color: #ed6a5a;">Cambiar contraseña</a>
+    </div>
+</div>
+
+{% endblock  %}
