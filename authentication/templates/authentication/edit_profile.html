@@ -22,13 +22,14 @@
         {% endif %}
 
         {{form.as_p}}
-        
-        <div class="form-group">
-            <a href="{% url 'change_password' %}" class="btn btn-link" style="color: #ed6a5a;">Cambiar contraseña</a>
-        </div>
 
         <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Guardar</button>
     </form>
+        
+    <br/>
+    <div class="form-group">
+        <a href="{% url 'change_password' %}" class="btn btn-danger" style="background-color: #ed6a5a; border-color: #ed6a5a;">Cambiar contraseña</a>
+    </div>
 </div>
 
 {% endblock  %}

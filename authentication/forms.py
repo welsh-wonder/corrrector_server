@@ -33,6 +33,7 @@ class EditUserForm(UserChangeForm):
     email = forms.EmailField(label="Correo electrónico", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'ejemplo@dominio.com'}))
     first_name = forms.CharField(max_length=100, label="Nombre", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Joanne'}))
     last_name = forms.CharField(max_length=100, label="Apellido", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Rowling'}))
+    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type':'hidden', 'placeholder':'KWQbs4{oXzeH[9EW'}))
     
     class Meta:
         model = User
