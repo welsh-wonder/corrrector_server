@@ -1,0 +1,12 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <!--TODO: Implement note writing-->
+{% else %}
+    <h2>Te damos la bienvenida a corrrector</h2>
+    <h3>Inicia sesión para acceder a la aplicación</h3>
+{% endif %}
+
+{% endblock  %}

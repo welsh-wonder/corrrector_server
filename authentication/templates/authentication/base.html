@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="es">
   <head>
@@ -9,12 +9,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="{% static 'authentication/css/master.css' %}">
+
     <title>corrrector</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fbfbfb;">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static "authentication/logo.png" %}" width="120" height="60" alt=""/>
+            <img src="{% static "authentication/logo.png" %}" width="132" height="66" alt=""/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,8 +43,8 @@
         {% if messages %}
             {% for message in messages %}
                 <div class="col-md-6 offset-md-3 alert alert-success alert-dismissable" role="alert" style="background-color: #75b8c8; color: #fbfbfb">
-                    <button class="close" data-dismiss="alert">
-                        <small style="color: #fbfbfb"><sup>x</sup></small>
+                    <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                        <span aria-hidden="true" style="color: #fbfbfb">&times;</span>
                     </button>
                     {{ message }}
                 </div>

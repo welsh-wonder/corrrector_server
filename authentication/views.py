@@ -71,3 +71,6 @@ def change_password(request):
 
     context = {'form': form}
     return render(request, 'authentication/change_password.html', context)
+
+def new_note(request):
+    return render(request, 'authentication/new_note.html', {})

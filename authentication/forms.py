@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
@@ -8,7 +9,7 @@ class SignUpForm(UserCreationForm):
     last_name = forms.CharField(max_length=100, label="Apellido", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Rowling'}))
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
     def __init__(self, *args, **kwargs):
@@ -36,7 +37,7 @@ class EditUserForm(UserChangeForm):
     password = forms.CharField(label="", widget=forms.TextInput(attrs={'type':'hidden', 'placeholder':'KWQbs4{oXzeH[9EW'}))
     
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
 
     def __init__(self, *args, **kwargs):
@@ -49,7 +50,7 @@ class EditUserForm(UserChangeForm):
 
 class ChangePasswordForm(PasswordChangeForm):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('old_password', 'new_password1', 'new_password2')
 
     def __init__(self, *args, **kwargs):

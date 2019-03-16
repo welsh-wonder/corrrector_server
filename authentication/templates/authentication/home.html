@@ -3,9 +3,22 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h2>Te damos la bienvenida a corrrector, {{user.first_name}} {{user.last_name}}</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            
+            </div>
+            <div class="col-md-auto">
+            
+            </div>
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="{% url 'new_note' %}" style="background-color: #77cbb9; border-color: #77cbb9;">Nueva nota</a>
+            </div>
+        </div>
+    </div>
 {% else %}
     <h2>Te damos la bienvenida a corrrector</h2>
+    <h3>Inicia sesión para acceder a la aplicación</h3>
 {% endif %}
 
 {% endblock  %}
