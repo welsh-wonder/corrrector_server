@@ -1,7 +1,7 @@
 {% extends 'notes/note_base.html' %}
 
 {% block prenote %}
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -24,20 +24,13 @@
 {% endblock %}
 
 {% block note_content %}
+<div class="col-md-6 offset-md-3">
     {% if user.is_authenticated %}
         <div class="card-deck">
         {% for note in object_list %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ note.title }}</h5>
-                    <p class="card-text">{{ note.content|slice:":180" }}</p>
-                    <a href="{% url 'notes:single' slug=note.slug %}" class="btn btn-primary" style="background-color: #77cbb9; border-color: #77cbb9;">Ver nota</a>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Ultima actualización: {{ note.updated_at|naturaltime }}</small>
-                </div>
-            </div>
+            {% include "notes/_note.html" %}
         {% endfor %}
         </div>
     {% endif %}
+</div>
 {% endblock %}

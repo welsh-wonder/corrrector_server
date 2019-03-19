@@ -1,0 +1,23 @@
+{% extends 'notes/note_base.html' %}
+
+{% block note_content %}
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Borrar nota</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Estás a punto de eliminar esta nota.</p>
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
+        <a type="button" class="btn btn-primary" style="background-color: #77cbb9; border-color: #77cbb9;">Continuar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock note_content %}

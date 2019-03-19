@@ -2,18 +2,16 @@
 {% load humanize %}
 
 {% block prenote %}
-
-    <div class="col-md-6 offset-md-3">
-        <h3>
-            {{note.title}}
-            <small class="text-muted">Ultima actualización: {{ note.updated_at|naturaltime }}</small>
-        </h3>
-    </div>
-
+<div class="col-md-6 offset-md-3">
+    <h3>
+        {{note.title}}
+        <small class="text-muted">Ultima actualización: {{ note.updated_at|naturaltime }}</small>
+    </h3>
+</div>
 {% endblock  %}
 
 {% block note_content %}
-
-
-
+<div class="col-md-6 offset-md-3">
+    {% include "notes/_note.html" %}
+</div>
 {% endblock %}
