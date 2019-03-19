@@ -18,7 +18,7 @@ def login_user(request):
             messages.success(request, ('¡Hola de nuevo {}!'.format(username)))
             return redirect('home')
         else:
-            messages.success(request, ('Tu usuario o contraseña son incorrectos.'))
+            #messages.success(request, ('Tu usuario o contraseña son incorrectos.'))
             return redirect('login')
     else:
         return render(request, 'authentication/login.html', {})
