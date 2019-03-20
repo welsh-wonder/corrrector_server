@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
@@ -32,25 +32,36 @@ class DeleteNote(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     def delete(self, *args, **kwargs):
         messages.success(self.request, "Nota eliminada")
         return super().delete(*args, **kwargs)
-    
 
 class SingleNote(generic.DetailView):
     model = models.Note
 
     def get_queryset(self):
-        return super().get_queryset().filter(user__username__iexact=self.kwargs.get('username')) 
+        return super().get_queryset()
+
+    #def get_queryset(self):
+     #   return super().get_queryset().filter(user__username__iexact=self.kwargs.get('username'))
 
 class ListNotes(generic.ListView):
     model = models.Note
-    template_name = 'notes/user_note_list.html'
-
-    def get_queryset(self):
+    template_name = 'authentication/home.html'
+    
+    '''def get_queryset(self):
         try:
             self.note_user = User.objects.prefetch_related('notes').get(username__iexact=self.kwargs.get('username'))
         except User.DoesNotExist:
             raise Http404
         else:
-            return self.note_user.notes.all()
+            return self.note_user.notes.all()'''
+    
+    def get_queryset(self):
+        try:
+            self.note_user = user=self.request.user
+        except:
+            self.note_user = None
+        else:
+            return models.Note.objects.filter(user=self.note_user)
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

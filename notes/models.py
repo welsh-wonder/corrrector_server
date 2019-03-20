@@ -20,7 +20,7 @@ class Note(models.Model):
     updated_at = models.DateTimeField()
 
     def __str__(self):
-        return self.content
+        return self.title
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -31,9 +31,14 @@ class Note(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("posts_single", kwargs={"pk": self.pk, "username": self.user.username})
+        return reverse(
+            "notes:single",
+            kwargs={
+                "username": self.user.username,
+                "pk": self.pk,
+            }
+        )
 
     class Meta:
         ordering = ['-updated_at']
-        unique_together = ('user', 'content')
-    
+        unique_together = ['user', 'content']

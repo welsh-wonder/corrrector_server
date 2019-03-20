@@ -7,7 +7,7 @@
     <form method="POST" action="{% url 'notes:create' %}">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Regístrate</button>
+        <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Guardar</button>
     </form>
 </div>
 {% endblock  %}

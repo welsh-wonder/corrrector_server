@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'bootstrap4',
     'authentication',
+    'notes',
 ]
 
 MIDDLEWARE = [

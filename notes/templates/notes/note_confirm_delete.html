@@ -15,7 +15,7 @@
       </div>
       <div class="modal-footer">
         <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
-        <a type="button" class="btn btn-primary" style="background-color: #77cbb9; border-color: #77cbb9;">Continuar</a>
+        <a type="button" href="{% url 'notes:single' username=user.username pk=object.pk %}" class="btn btn-primary" style="background-color: #77cbb9; border-color: #77cbb9;">Continuar</a>
       </div>
     </div>
   </div>
