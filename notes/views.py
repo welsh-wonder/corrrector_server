@@ -55,11 +55,8 @@ class ListNotes(generic.ListView):
             return self.note_user.notes.all()'''
     
     def get_queryset(self):
-        try:
-            self.note_user = user=self.request.user
-        except:
-            self.note_user = None
-        else:
+        self.note_user = user=self.request.user
+        if self.request.user.is_authenticated:
             return models.Note.objects.filter(user=self.note_user)
     
 
