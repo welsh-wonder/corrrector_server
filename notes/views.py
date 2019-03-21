@@ -39,27 +39,29 @@ class SingleNote(generic.DetailView):
     def get_queryset(self):
         return super().get_queryset()
 
-    #def get_queryset(self):
-     #   return super().get_queryset().filter(user__username__iexact=self.kwargs.get('username'))
+class EditNote(LoginRequiredMixin, generic.UpdateView):
+    fields = ('title', 'content')
+    model = models.Note
+    template_name_suffix = '_update'
+
+    def get_queryset(self):
+        return super().get_queryset()
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 class ListNotes(generic.ListView):
     model = models.Note
     template_name = 'authentication/home.html'
     
-    '''def get_queryset(self):
-        try:
-            self.note_user = User.objects.prefetch_related('notes').get(username__iexact=self.kwargs.get('username'))
-        except User.DoesNotExist:
-            raise Http404
-        else:
-            return self.note_user.notes.all()'''
-    
     def get_queryset(self):
-        self.note_user = user=self.request.user
+        self.note_user = self.request.user
         if self.request.user.is_authenticated:
             return models.Note.objects.filter(user=self.note_user)
     
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["note_user"] = self.note_user

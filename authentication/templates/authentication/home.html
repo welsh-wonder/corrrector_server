@@ -24,11 +24,11 @@
 {% endblock %}
 
 {% block note_content %}
-{% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
     <div class="card-columns">
     {% for note in object_list %}
         {% include "notes/_note.html" %}
     {% endfor %}
     </div>
-{% endif %}
+    {% endif %}
 {% endblock %}

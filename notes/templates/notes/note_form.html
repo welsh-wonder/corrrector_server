@@ -1,13 +1,14 @@
 {% extends 'notes/note_base.html' %}
 {% load bootstrap4 %}
 
+{% block prenote %}
+<h2>Nueva nota</h2>
+{% endblock  %}
+
 {% block note_content %}
-<div class="col-md-6 offset-md-3">
-    <h2>Nueva nota</h2>
-    <form method="POST" action="{% url 'notes:create' %}">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Guardar</button>
-    </form>
-</div>
+<form method="POST" action="{% url 'notes:create' %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Guardar</button>
+</form>
 {% endblock  %}

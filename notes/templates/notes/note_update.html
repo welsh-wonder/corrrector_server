@@ -1,0 +1,18 @@
+{% extends 'notes/note_base.html' %}
+{% load humanize %}
+{% load bootstrap4 %}
+
+{% block prenote %}
+<h3>
+    {{note.title}}
+    <small class="text-muted">Ultima actualización: {{ note.updated_at|naturaltime }}</small>
+</h3>
+{% endblock  %}
+
+{% block note_content %}
+<form method="POST" action="{% url 'notes:update' %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Actualizar</button>
+</form>
+{% endblock %}

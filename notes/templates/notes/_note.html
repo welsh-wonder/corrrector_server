@@ -3,7 +3,7 @@
     <div class="card-body">
         <h5 class="card-title">{{ note.title }}</h5>
         <p class="card-text">{{ note.content|slice:":180" }}</p>
-        <a href="{% url 'notes:single' username=note.user.username pk=note.pk %}" class="btn btn-primary" style="background-color: #77cbb9; border-color: #77cbb9;">Ver nota</a>
+        <a href="{% url 'notes:update' username=note.user.username pk=note.pk %}" class="btn btn-primary" style="background-color: #77cbb9; border-color: #77cbb9;">Ver nota</a>
     </div>
     <div class="card-footer">
         <small class="text-muted">Ultima actualización: {{ note.updated_at|naturaltime }}</small>
