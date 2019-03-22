@@ -10,9 +10,18 @@
 {% endblock  %}
 
 {% block note_content %}
-<form method="POST" action="{% url 'notes:update' %}">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Actualizar</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+        <form method="POST" action="{% url 'notes:update' %}">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-dark" style="background-color: #1c1c1c; border-color: #1c1c1c;">Actualizar</button>
+        </form>
+    </div>
+    <div class="col-4">
+        <!--TODO list of errors-->
+    </div>
+  </div>
+</div>
 {% endblock %}

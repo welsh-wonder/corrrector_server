@@ -42,3 +42,12 @@ class Note(models.Model):
     class Meta:
         ordering = ['-updated_at']
         unique_together = ['user', 'content']
+
+class Error(models.Model):
+    note = models.ForeignKey(Note, related_name='errors', on_delete=models.CASCADE)
+    phrase = models.CharField(editable=False, max_length=512, unique=False)
+    suggestion = models.CharField(editable=False, max_length=512, unique=False)
+    explanation = models.TextField(editable=False, blank=True, default='')
+
+    def __str__(self):
+        return self.explanation[:30]

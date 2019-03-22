@@ -45,6 +45,7 @@ class EditNote(LoginRequiredMixin, generic.UpdateView):
     template_name_suffix = '_update'
 
     def get_queryset(self):
+        # TODO: get the note's content and call a new method to get errors
         return super().get_queryset()
     
     def form_valid(self, form):
